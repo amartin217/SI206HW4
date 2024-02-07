@@ -27,7 +27,12 @@ class Customer:
         for key in order:
             total += store.calculate_item_cost(key,order[key]["quantity"], order[key]["express_order"], self)
             #FIX
-            if order[key]["quantity"] > store.inventory[key]:
+            order_quantity = order[key]["quantity"]
+            #print(order_quantity)
+            #print(store.inventory[key])
+            if key not in store.inventory:
+                return False
+            if order_quantity > store.inventory[key]:
                 return False
         if total > self.account:
             return False
