@@ -242,7 +242,7 @@ class TestAllMethods(unittest.TestCase):
         # Scenario 3: store doesn't sell that item
         self.assertEqual(pam.place_item_order(supplies_r_us, {
             self.loose_leaf_paper: {
-                "quantity": 4,
+                "quantity": 3,
                 "express_order": True
             }}
         ), False)
