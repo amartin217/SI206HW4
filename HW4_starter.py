@@ -185,20 +185,24 @@ class TestAllMethods(unittest.TestCase):
             self.pencil_package, 3, True, self.alice), 2.70, 2)
 
     # EXTRA CREDIT: UNCOMMENT THE TEST LINES BELOW: Check if only employees of the store get the employee discount
-        # cameron = Customer(name='Cameron', employeer_id=4, account=20)
-        # extra_credit_order = {
-        #     self.notebook: {
-        #         "quantity": 7,
-        #         "express_order": True,
-        #     }
-        # }
-        # self.charlies_office_supplies.stock_up(self.notebook, 21)
-        # self.assertAlmostEqual(self.charlies_office_supplies.calculate_item_cost(
-        #     self.notebook, 7, True, self.charlie), 15.12, 2)
-        # self.assertTrue(self.charlie.place_item_order(
-        #     self.charlies_office_supplies, extra_credit_order))
-        # self.assertFalse(cameron.place_item_order(
-        #     self.charlies_office_supplies, extra_credit_order))
+        cameron = Customer(name='Cameron', employeer_id=4, account=20)
+        extra_credit_order = {
+            self.notebook: {
+                "quantity": 7,
+                "express_order": True,
+            }
+        }
+        self.charlies_office_supplies.stock_up(self.notebook, 21)
+        #employee only pays 60%
+        self.assertAlmostEqual(self.charlies_office_supplies.calculate_item_cost(
+            self.notebook, 7, True, self.charlie), 15.12, 2)
+        #Non employee pays full priceS
+        self.assertAlmostEqual(self.charlies_office_supplies.calculate_item_cost(
+            self.notebook, 7, True, cameron), 25.2, 2)
+        self.assertTrue(self.charlie.place_item_order(
+            self.charlies_office_supplies, extra_credit_order))
+        self.assertFalse(cameron.place_item_order(
+            self.charlies_office_supplies, extra_credit_order))
 
     # Check the accept_payment method for store
 
